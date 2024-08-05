@@ -1,0 +1,23 @@
+﻿usage_report:
+  reporting_enabled: false
+
+query_frontend:
+  search:
+    duration_slo: 5s
+  trace_by_id:
+    duration_slo: 5s
+
+ingester:
+  flush_all_on_shutdown: true
+
+compactor:
+  compaction:
+    block_retention: 36h
+
+storage:
+  trace:
+    backend: local
+    wal:
+      path: /tmp/tempo/wal
+    local:
+      path: /tmp/tempo/blocks

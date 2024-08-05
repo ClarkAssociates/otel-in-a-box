@@ -1,0 +1,14 @@
+﻿apiVersion: 1
+
+providers:
+  - name: 'Local File Definitions'
+    orgId: 1
+    folder: ''
+    folderUid: ''
+    type: file
+    disableDeletion: true
+    updateIntervalSeconds: 10
+    allowUiUpdates: false
+    options:
+      path: /var/lib/grafana/dashboards
+      foldersFromFilesStructure: true
