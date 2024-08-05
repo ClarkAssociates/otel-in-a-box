@@ -12,7 +12,7 @@ This project aims to provide a self-contained OTel Collector and LGTM (Loki, Gra
 - [Docker Compose](https://docs.docker.com/compose/)
 
 ## Services
-| Service                                                    | Use                                                                                                                                                                            | Ports                                                                             |
+| Service                                                    | Use                                                                                                                                                                            | Locally Exposed Ports                                                             |
 |------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
 | [OTel Collector](https://opentelemetry.io/docs/collector/) | The OpenTelemetry Collector offers a vendor-agnostic implementation on how to receive, process, and export telemetry data.                                                     | `8889:8889` - Prometheus exporter metrics<br />`4317:4317` - OTLP `gRPC` receiver |
 | [Grafana](https://grafana.com/)                            | Grafana is an open-source platform for monitoring and observability. It allows you to query, visualize, alert on, and understand your metrics no matter where they are stored. | `3000:3000` - The main user interface                                             |
@@ -44,8 +44,7 @@ To stop and remove all services and associated volumes, run:
 ```bash
 docker-compose down -v
 ```
-
-## Configuration
+## Service Configuration
 Configuration files for each service are provided in their respective directories:
 - Grafana: `./grafana`
 - Prometheus: `./prometheus`
@@ -54,6 +53,33 @@ Configuration files for each service are provided in their respective directorie
 - OTel Collector: `./otel`
 
 These configurations can be modified to suit your local development and testing needs.
+
+## FAQ
+
+### Resolving a Port Conflict with Docker Compose
+If you encounter a port conflict because a service is already running on one of the ports exposed by this `docker-compose.yml` file, follow these steps to remap the port:
+
+1) Choose a New Port:
+   - Select a new, unused port on your local system.
+   - This new port number should be between `1024` and `65535`.
+2) Edit the `docker-compose.yml` File:
+   - Open the `docker-compose.yml` file in a text editor.
+   - Locate the ports section for the service that has the conflicting port.
+   - Find the mapping that looks like `XXXX:XXXX` (where `XXXX` represents the port numbers).
+   - Change the left side of the mapping (the host port) to your new port value.
+
+Example:
+If the original `docker-compose.yml` file has a port mapping like this:
+
+```yaml
+ports:
+  - "8080:80"
+```
+And `8080` is the conflicting port, and you choose `9090` as the new port, update it to:
+```yaml
+ports:
+  - "9090:80"
+```
 
 ## Contributing
 Contributions are welcome! Please open an issue or submit a pull request for any changes or improvements.
