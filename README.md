@@ -85,4 +85,4 @@ ports:
 Contributions are welcome! Please open an issue or submit a pull request for any changes or improvements.
 
 ## License
-This project is licensed under the [MIT License](LICENSE.md).
+This project is licensed under the [Apache 2 License](LICENSE).
