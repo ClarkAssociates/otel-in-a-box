@@ -21,6 +21,16 @@ datasources:
     version: 1
     editable: false
     apiVersion: 1
+    jsonData:
+      lokiSearch:
+        datasourceUid: Loki
+      tracesToLogsV2:
+        datasourceUid: Loki
+        spanStartTimeShift: '-1h'
+        spanEndTimeShift: '1h'
+        filterByTraceID: true
+        filterBySpanID: true
+      editable: true
 
   - name: Loki
     type: loki
