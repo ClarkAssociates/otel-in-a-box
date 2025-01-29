@@ -21,3 +21,10 @@ storage:
       path: /tmp/tempo/wal
     local:
       path: /tmp/tempo/blocks
+
+distributor:
+  receivers:
+    otlp:
+      protocols:
+        grpc:
+          endpoint: 0.0.0.0:4317
