@@ -15,7 +15,7 @@ datasources:
     type: tempo
     uid: tempo
     access: proxy
-    url: http://tempo
+    url: http://tempo:3200
     basicAuth: false
     isDefault: false
     version: 1
