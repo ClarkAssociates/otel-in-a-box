@@ -15,8 +15,8 @@ This project aims to provide a self-contained OTel Collector and LGTM (Loki, Gra
 | Service                                                    | Use                                                                                                                                                                            | Locally Exposed Ports                                                             |
 |------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
 | [OTel Collector](https://opentelemetry.io/docs/collector/) | The OpenTelemetry Collector offers a vendor-agnostic implementation on how to receive, process, and export telemetry data.                                                     | `8889:8889` - Prometheus exporter metrics<br />`4317:4317` - OTLP `gRPC` receiver |
-| [Grafana](https://grafana.com/)                            | Grafana is an open-source platform for monitoring and observability. It allows you to query, visualize, alert on, and understand your metrics no matter where they are stored. | `3000:3000` - The main user interface                                             |
-| [Prometheus](https://prometheus.io/)                       | Prometheus is an open-source systems monitoring and alerting toolkit originally built at SoundCloud.                                                                           |                                                                                   |
+| [Grafana](https://grafana.com/)                            | Grafana is an open-source platform for monitoring and observability. It allows you to query, visualize, alert on, and understand your metrics no matter where they are stored. | `3000:3000` - Grafana user interface                                              |
+| [Prometheus](https://prometheus.io/)                       | Prometheus is an open-source systems monitoring and alerting toolkit originally built at SoundCloud.                                                                           | `9090:9090` - Prometheus user interface                                           |
 | [Loki](https://grafana.com/oss/loki/)                      | Loki is a horizontally-scalable, highly-available, multi-tenant log aggregation system inspired by Prometheus.                                                                 |                                                                                   |
 | [Tempo](https://grafana.com/oss/tempo/)                    | Tempo is an open-source, easy-to-use, and high-scale distributed tracing backend.                                                                                              |                                                                                   |
 
@@ -26,18 +26,18 @@ This project aims to provide a self-contained OTel Collector and LGTM (Loki, Gra
    git clone https://github.com/ClarkAssociates/otel-in-a-box.git
    cd otel-in-a-box
    ```
-
 2. Start the services:
    ```bash
    docker-compose up -d
    ```
 3. Configure your application:
-  - URL: `http://localhost:4317`
-  - Protocol: `gRPC`
-
+   - URL: [http://localhost:4317](http://localhost:4317)
+   - Protocol: `gRPC`
 4. Access Grafana:
-  - URL: `http://localhost:3000`
-  - Grafana is pre-configured to use anonymous access with admin rights.
+   - URL: [http://localhost:3000](http://localhost:3000)
+   - Grafana is pre-configured to use anonymous access with admin rights.
+5. (Optional) Access Prometheus:
+   - URL: [http://localhost:9090](http://localhost:9090)
 
 ## Cleanup
 To stop and remove all services and associated volumes, run:
@@ -46,11 +46,11 @@ docker-compose down -v
 ```
 ## Service Configuration
 Configuration files for each service are provided in their respective directories:
-- Grafana: `./grafana`
-- Prometheus: `./prometheus`
-- Loki: `./loki`
-- Tempo: `./tempo`
-- OTel Collector: `./otel`
+- Grafana: [`./grafana`](./grafana)
+- Prometheus: [`./prometheus`](./prometheus)
+- Loki: [`./loki`](./loki)
+- Tempo: [`./tempo`](./tempo)
+- OTel Collector: [`./otel`](./otel)
 
 These configurations can be modified to suit your local development and testing needs.
 
