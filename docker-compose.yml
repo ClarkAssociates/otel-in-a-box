@@ -3,7 +3,7 @@
     image: grafana/grafana
     container_name: grafana
     ports:
-      - "3000:3000"
+      - "3000:3000" # Exposes Grafana UI on host port 3000 (http://localhost:3000)
     volumes:
       - ./grafana/datasource.yml:/etc/grafana/provisioning/datasources/datasource.yml
       - ./grafana/dashboard.yaml:/etc/grafana/provisioning/dashboards/main.yaml
@@ -23,13 +23,15 @@
   prometheus:
     image: prom/prometheus
     container_name: prometheus
+    ports:
+      - "9090:9090" # Exposes Prometheus UI on host port 9090 (http://localhost:9090)
     volumes:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
     networks:
       - otel
 
   loki:
-    image: grafana/loki:3.1.0
+    image: grafana/loki:latest
     container_name: loki
     entrypoint: /usr/bin/loki
     command: [ "-config.file=/etc/loki/local-config.yaml" ]
