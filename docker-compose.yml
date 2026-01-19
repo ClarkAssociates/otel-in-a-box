@@ -21,7 +21,7 @@
       - otel
 
   prometheus:
-    image: prom/prometheus
+    image: prom/prometheus:v3.4.1
     container_name: prometheus
     ports:
       - "9090:9090" # Exposes Prometheus UI on host port 9090 (http://localhost:9090)
@@ -31,7 +31,7 @@
       - otel
 
   loki:
-    image: grafana/loki:latest
+    image: grafana/loki:3.4.2
     container_name: loki
     entrypoint: /usr/bin/loki
     command: [ "-config.file=/etc/loki/local-config.yaml" ]
@@ -42,7 +42,7 @@
       - otel
 
   tempo:
-    image: grafana/tempo
+    image: grafana/tempo:2.9.0
     container_name: tempo
     command: [ "-config.file=/etc/tempo.yaml" ]
     volumes:
@@ -52,7 +52,7 @@
       - otel
 
   otel-collector:
-    image: otel/opentelemetry-collector-contrib:latest
+    image: otel/opentelemetry-collector-contrib:0.117.0
     container_name: otel
     ports:
       - 8889:8889 # Prometheus exporter metrics
