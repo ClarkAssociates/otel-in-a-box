@@ -1,4 +1,7 @@
-﻿usage_report:
+﻿server:
+  http_listen_port: 3200
+
+usage_report:
   reporting_enabled: false
 
 query_frontend:
@@ -13,6 +16,16 @@ ingester:
 compactor:
   compaction:
     block_retention: 36h
+
+metrics_generator:
+  registry:
+    external_labels:
+      source: tempo
+  storage:
+    path: /tmp/tempo/generator/wal
+    remote_write:
+      - url: http://prometheus:9090/api/v1/write
+        send_exemplars: true
 
 storage:
   trace:
